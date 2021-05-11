@@ -43,24 +43,27 @@ public class Slots : MonoBehaviour
         switch (State)
         {
             case eState.Title:
+                State = eState.StartGame;
                 break;
             case eState.StartGame:
                 wheelOneTimer = Random.Range(2, 5);
                 //wheelTwo = Random.Range(6, 10);
                 //wheelThree = Random.Range(10, 15);
+                State = eState.Game;
                 break;
             case eState.Game:
                 if (isSpinning)
                 {
                     wheelOneImage.sprite = symbols[(wheelIndex % symbols.Count)].slotSprite;
                     wheelOneTimer -= Time.deltaTime;
-                    if (lastSecond != (int)wheelOneTimer)
+                    if (lastSecond != (int)(wheelOneTimer % 60))
                     {
-                        lastSecond = (int)wheelOneTimer;
+                        //Debug.Log("Last Second: " + lastSecond + " Wheel One Timer: " + wheelOneTimer);
+                        lastSecond = (int)(wheelOneTimer % 60);
                         wheelIndex++;
                     }
 
-                    if (wheelThreeTimer <= 0) isSpinning = false;
+                    if (wheelOneTimer <= 0) isSpinning = false;
                 }
                 break;
             case eState.EndGame:
@@ -74,9 +77,9 @@ public class Slots : MonoBehaviour
     {
         if (!isSpinning)
         {
-            wheelOneTimer = Random.Range(2, 5);
-            //wheelTwo = Random.Range(6, 10);
-            //wheelThree = Random.Range(10, 15);
+            wheelOneTimer = Random.Range(5, 10);
+            //wheelTwo = Random.Range(11, 15);
+            //wheelThree = Random.Range(16, 20);
         }
 
         isSpinning = true;

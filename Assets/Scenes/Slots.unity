@@ -814,6 +814,14 @@ MonoBehaviour:
   wheelThreeImage: {fileID: 1251392192}
   symbols:
   - {fileID: 9201377583698350203, guid: 179527ac61a50da42a46e21ceb7ae115, type: 3}
+  - {fileID: 9201377583698350203, guid: 06def15894529e94aab29fbaaa086349, type: 3}
+  - {fileID: 9201377583698350203, guid: 8637e448e2f213146802955d777cd205, type: 3}
+  - {fileID: 9201377583698350203, guid: bfe3cea3a7babc847b24c4758b3c4dd9, type: 3}
+  - {fileID: 9201377583698350203, guid: 3e1b1b4900b72ff4db834d5d86d5eef1, type: 3}
+  - {fileID: 9201377583698350203, guid: d717b1b1057d45e469011058c283a410, type: 3}
+  - {fileID: 9201377583698350203, guid: aa596e3c95157934fb20c7143c9d3aab, type: 3}
+  - {fileID: 9201377583698350203, guid: cb0a65858085473498bd04afe70e684e, type: 3}
+  - {fileID: 9201377583698350203, guid: f875a707174b48646aa21ca64da1cd14, type: 3}
 --- !u!1 &2125267020
 GameObject:
   m_ObjectHideFlags: 0
