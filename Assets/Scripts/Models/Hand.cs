@@ -19,7 +19,22 @@ public class Hand
         foreach (Card card in cards)
         {
             if (card.Rank == Card.eRank.Ace) aceCount++;
-            sum += ((int)card.Rank);
+
+            switch (card.Rank)
+            {
+                case Card.eRank.Jack:
+                    sum += 10;
+                    break;
+                case Card.eRank.Queen:
+                    sum += 10;
+                    break;
+                case Card.eRank.King:
+                    sum += 10;
+                    break;
+                default:
+                    sum += ((int)card.Rank);
+                    break;
+            }  
         }
 
         if (aceCount > 0 && sum <= 11)
