@@ -23,7 +23,7 @@ public class Slots : MonoBehaviour
     public Image wheelTwoImage;
     public Image wheelThreeImage;
 
-    List<Sprite> symbols = new List<Sprite>();
+    public List<SlotSymbol> symbols = new List<SlotSymbol>();
                   
     float wheelOne;
     float wheelTwo;
@@ -49,7 +49,7 @@ public class Slots : MonoBehaviour
             case eState.Game:
                 if (isSpinning)
                 {
-                    wheelOneImage.sprite = symbols[(int)wheelOne];
+                    wheelOneImage.sprite = symbols[(int)wheelOne].slotSprite;
                     wheelOne -= Time.deltaTime;
 
                     if (wheelThree <= 0) isSpinning = false;
