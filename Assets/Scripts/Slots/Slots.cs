@@ -27,7 +27,7 @@ public class Slots : MonoBehaviour
                   
     float wheelOneTimer;
     int wheelIndex;
-    float wheelTwo;
+    float wheelTwoTimer;
     float wheelThreeTimer;
 
     int lastSecond = 0;
@@ -46,9 +46,9 @@ public class Slots : MonoBehaviour
                 State = eState.StartGame;
                 break;
             case eState.StartGame:
-                wheelOneTimer = Random.Range(2, 5);
-                //wheelTwo = Random.Range(6, 10);
-                //wheelThree = Random.Range(10, 15);
+                wheelOneTimer = Random.Range(5, 10);
+                wheelTwoTimer = Random.Range(11, 15);
+                wheelThreeTimer = Random.Range(16, 20);
                 State = eState.Game;
                 break;
             case eState.Game:
@@ -58,7 +58,6 @@ public class Slots : MonoBehaviour
                     wheelOneTimer -= Time.deltaTime;
                     if (lastSecond != (int)(wheelOneTimer % 60))
                     {
-                        //Debug.Log("Last Second: " + lastSecond + " Wheel One Timer: " + wheelOneTimer);
                         lastSecond = (int)(wheelOneTimer % 60);
                         wheelIndex++;
                     }
@@ -78,8 +77,8 @@ public class Slots : MonoBehaviour
         if (!isSpinning)
         {
             wheelOneTimer = Random.Range(5, 10);
-            //wheelTwo = Random.Range(11, 15);
-            //wheelThree = Random.Range(16, 20);
+            wheelTwoTimer = Random.Range(11, 15);
+            wheelThreeTimer = Random.Range(16, 20);
         }
 
         isSpinning = true;
