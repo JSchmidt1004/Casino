@@ -25,9 +25,12 @@ public class Slots : MonoBehaviour
 
     public List<SlotSymbol> symbols = new List<SlotSymbol>();
                   
-    float wheelOne;
+    float wheelOneTimer;
+    int wheelIndex;
     float wheelTwo;
-    float wheelThree;
+    float wheelThreeTimer;
+
+    int lastSecond = 0;
     bool isSpinning = false;
 
     private void Awake()
@@ -42,17 +45,22 @@ public class Slots : MonoBehaviour
             case eState.Title:
                 break;
             case eState.StartGame:
-                wheelOne = Random.Range(2, 5);
+                wheelOneTimer = Random.Range(2, 5);
                 //wheelTwo = Random.Range(6, 10);
                 //wheelThree = Random.Range(10, 15);
                 break;
             case eState.Game:
                 if (isSpinning)
                 {
-                    wheelOneImage.sprite = symbols[(int)wheelOne].slotSprite;
-                    wheelOne -= Time.deltaTime;
+                    wheelOneImage.sprite = symbols[(wheelIndex % symbols.Count)].slotSprite;
+                    wheelOneTimer -= Time.deltaTime;
+                    if (lastSecond != (int)wheelOneTimer)
+                    {
+                        lastSecond = (int)wheelOneTimer;
+                        wheelIndex++;
+                    }
 
-                    if (wheelThree <= 0) isSpinning = false;
+                    if (wheelThreeTimer <= 0) isSpinning = false;
                 }
                 break;
             case eState.EndGame:
@@ -66,7 +74,7 @@ public class Slots : MonoBehaviour
     {
         if (!isSpinning)
         {
-            wheelOne = Random.Range(2, 5);
+            wheelOneTimer = Random.Range(2, 5);
             //wheelTwo = Random.Range(6, 10);
             //wheelThree = Random.Range(10, 15);
         }
