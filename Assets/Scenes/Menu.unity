@@ -1459,6 +1459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1050287168}
+  - component: {fileID: 1050287172}
   - component: {fileID: 1050287171}
   - component: {fileID: 1050287170}
   - component: {fileID: 1050287169}
@@ -1532,7 +1533,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1050287170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1050287172}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1050287170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1584,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050287167}
   m_CullTransparentMesh: 1
+--- !u!114 &1050287172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050287167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: Bank
 --- !u!1 &1125270582
 GameObject:
   m_ObjectHideFlags: 0
