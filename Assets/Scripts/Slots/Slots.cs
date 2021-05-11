@@ -24,11 +24,13 @@ public class Slots : MonoBehaviour
     public Image wheelThreeImage;
 
     public List<SlotSymbol> symbols = new List<SlotSymbol>();
-                  
+
     float wheelOneTimer;
-    int wheelIndex;
+    int wheelOneIndex;
     float wheelTwoTimer;
+    int wheelTwoIndex;
     float wheelThreeTimer;
+    int wheelThreeIndex;
 
     int lastSecond = 0;
     bool isSpinning = false;
@@ -54,12 +56,20 @@ public class Slots : MonoBehaviour
             case eState.Game:
                 if (isSpinning)
                 {
-                    wheelOneImage.sprite = symbols[(wheelIndex % symbols.Count)].slotSprite;
-                    wheelOneTimer -= Time.deltaTime;
-                    if (lastSecond != (int)(wheelOneTimer % 60))
+                    wheelOneImage.sprite = symbols[(wheelOneIndex % symbols.Count)].slotSprite;
+                    wheelTwoImage.sprite = symbols[(wheelTwoIndex % symbols.Count)].slotSprite;
+                    wheelThreeImage.sprite = symbols[(wheelThreeIndex % symbols.Count)].slotSprite;
+
+                    if (wheelOneTimer > 0) wheelOneTimer -= Time.deltaTime;
+                    if (wheelTwoTimer > 0) wheelTwoTimer -= Time.deltaTime;
+                    if (wheelThreeTimer > 0) wheelThreeTimer -= Time.deltaTime;
+
+                    if (lastSecond != (int)(wheelThreeTimer % 60))
                     {
-                        lastSecond = (int)(wheelOneTimer % 60);
-                        wheelIndex++;
+                        lastSecond = (int)(wheelThreeTimer % 60);
+                        wheelOneIndex++;
+                        wheelTwoIndex++;
+                        wheelThreeIndex++;
                     }
 
                     if (wheelOneTimer <= 0) isSpinning = false;
