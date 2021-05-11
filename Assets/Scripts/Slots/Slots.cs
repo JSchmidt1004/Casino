@@ -56,23 +56,8 @@ public class Slots : MonoBehaviour
             case eState.Game:
                 if (isSpinning)
                 {
-                    wheelOneImage.sprite = symbols[(wheelOneIndex % symbols.Count)].slotSprite;
-                    wheelTwoImage.sprite = symbols[(wheelTwoIndex % symbols.Count)].slotSprite;
-                    wheelThreeImage.sprite = symbols[(wheelThreeIndex % symbols.Count)].slotSprite;
-
-                    if (wheelOneTimer > 0) wheelOneTimer -= Time.deltaTime;
-                    if (wheelTwoTimer > 0) wheelTwoTimer -= Time.deltaTime;
-                    if (wheelThreeTimer > 0) wheelThreeTimer -= Time.deltaTime;
-
-                    if (lastSecond != (int)(wheelThreeTimer % 60))
-                    {
-                        lastSecond = (int)(wheelThreeTimer % 60);
-                        wheelOneIndex++;
-                        wheelTwoIndex++;
-                        wheelThreeIndex++;
-                    }
-
-                    if (wheelOneTimer <= 0) isSpinning = false;
+                    SpinWheel();
+                    if (wheelThreeTimer <= 0) isSpinning = false;
                 }
                 break;
             case eState.EndGame:
@@ -92,5 +77,24 @@ public class Slots : MonoBehaviour
         }
 
         isSpinning = true;
+    }
+
+    public void SpinWheel()
+    {
+        wheelOneImage.sprite = symbols[(wheelOneIndex % symbols.Count)].slotSprite;
+        wheelTwoImage.sprite = symbols[(wheelTwoIndex % symbols.Count)].slotSprite;
+        wheelThreeImage.sprite = symbols[(wheelThreeIndex % symbols.Count)].slotSprite;
+
+        if (wheelOneTimer > 0) wheelOneTimer -= Time.deltaTime;
+        if (wheelTwoTimer > 0) wheelTwoTimer -= Time.deltaTime;
+        if (wheelThreeTimer > 0) wheelThreeTimer -= Time.deltaTime;
+
+        if (lastSecond != (int)(wheelThreeTimer % 5))
+        {
+            lastSecond = (int)(wheelThreeTimer % 5);
+            if (wheelOneTimer >= 0) wheelOneIndex++;
+            if (wheelTwoTimer >= 0) wheelTwoIndex++;
+            if (wheelThreeTimer >= 0) wheelThreeIndex++;
+        }
     }
 }
