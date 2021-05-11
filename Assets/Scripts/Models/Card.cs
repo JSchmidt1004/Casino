@@ -38,6 +38,6 @@ public class Card
         Suit = suit;
     }
 
-    //Make a Find Image method later
+    
 
 }
