@@ -13,8 +13,8 @@ public class BlackJack : MonoBehaviour
 
 
     //UI
-    public List<Image> playerCards;
-    public List<Image> dealerCards;
+    public List<Image> playerCards = new List<Image>();
+    public List<Image> dealerCards = new List<Image>();
 
     //Logic
     Hand playerHand = new Hand();
@@ -37,6 +37,8 @@ public class BlackJack : MonoBehaviour
             playerHand.AddCard(newCard);
         }
     }
+
+
 
     public void Start()
     {
