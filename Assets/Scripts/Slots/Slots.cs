@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slots : MonoBehaviour
 {
@@ -18,11 +19,16 @@ public class Slots : MonoBehaviour
     private Slots instance;
     public Slots Instance { get { return instance; } }
 
+    public Image wheelOneImage;
+    public Image wheelTwoImage;
+    public Image wheelThreeImage;
+
     List<Sprite> symbols = new List<Sprite>();
                   
     float wheelOne;
     float wheelTwo;
     float wheelThree;
+    bool isSpinning = false;
 
     private void Awake()
     {
@@ -37,11 +43,17 @@ public class Slots : MonoBehaviour
                 break;
             case eState.StartGame:
                 wheelOne = Random.Range(2, 5);
-                wheelTwo = Random.Range(6, 10);
-                wheelThree = Random.Range(10, 15);
+                //wheelTwo = Random.Range(6, 10);
+                //wheelThree = Random.Range(10, 15);
                 break;
             case eState.Game:
+                if (isSpinning)
+                {
+                    wheelOneImage.sprite = symbols[(int)wheelOne];
+                    wheelOne -= Time.deltaTime;
 
+                    if (wheelThree <= 0) isSpinning = false;
+                }
                 break;
             case eState.EndGame:
                 break;
@@ -52,8 +64,13 @@ public class Slots : MonoBehaviour
 
     public void OnLeverPull()
     {
-        wheelOne = Random.Range(2, 5);
-        wheelTwo = Random.Range(6, 10);
-        wheelThree = Random.Range(10, 15);
+        if (!isSpinning)
+        {
+            wheelOne = Random.Range(2, 5);
+            //wheelTwo = Random.Range(6, 10);
+            //wheelThree = Random.Range(10, 15);
+        }
+
+        isSpinning = true;
     }
 }
