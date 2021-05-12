@@ -25,12 +25,13 @@ public class BetHandler : MonoBehaviour
 
     public void BetOnClick(int index)
     {
-        betCounts[index].text = (int.Parse(betCounts[index].text)+1) + "";
+        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())+1) + "";
     }
     public void BackBetOnClick(int index)
     {
-        if (int.Parse(betCounts[index].text) == 0) return;
-        betCounts[index].text = (int.Parse(betCounts[index].text)-1) + "";
+        Debug.Log("Lower bet, currently betting " + betCounts[index].text.Trim() + " of chip " + (index+1));
+        if (int.Parse(betCounts[index].text.Trim()) <= 0) return;
+        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";
          
     }
 }
