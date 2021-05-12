@@ -80,11 +80,14 @@ public class BlackJack : MonoBehaviour
         if (playerTotal > dealerTotal)
         {
             //Player won bet
+
         } else if (playerTotal < dealerTotal) {
             //Player lost bet
+
         } else
         {
             //Player keeps bet
+
         }
 
         //Reset Deck
