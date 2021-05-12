@@ -72,7 +72,11 @@ public class Slots : MonoBehaviour
                         wheelThreeIndex++;
                     }
 
-                    if (wheelOneTimer <= 0) isSpinning = false;
+                    if (wheelOneTimer <= 0)
+                    {
+                        isSpinning = false;
+                        GetCash(500);
+                    }
                 }
                 break;
             case eState.EndGame:
@@ -80,6 +84,67 @@ public class Slots : MonoBehaviour
             default:
                 break;
         }
+    }
+
+
+    public float GetCash(float bet)
+    {
+        string nameOne = symbols[(wheelOneIndex % symbols.Count)].name;
+        string nameTwo = symbols[(wheelTwoIndex % symbols.Count)].name;
+        string nameThree = symbols[(wheelThreeIndex % symbols.Count)].name;
+
+        //Banana
+        //Bars
+        //Bell
+        //Cherry
+        //Lemon
+        //Melon
+        //Orange
+        //Plum
+        //Seven
+
+        if (nameOne.Equals("Banana") && nameTwo.Equals("Banana") && nameTwo.Equals("Banana"))
+        {
+            bet *= 2f;
+        }
+        else if (nameOne.Equals("Bars") && nameTwo.Equals("Bars") && nameTwo.Equals("Bars"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Bell") && nameTwo.Equals("Bell") && nameTwo.Equals("Bell"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Bars") && nameTwo.Equals("Bars") && nameTwo.Equals("Bars"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Cherry") && nameTwo.Equals("Cherry") && nameTwo.Equals("Cherry"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Lemon") && nameTwo.Equals("Lemon") && nameTwo.Equals("Lemon"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Melon") && nameTwo.Equals("Melon") && nameTwo.Equals("Melon"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Orange") && nameTwo.Equals("Orange") && nameTwo.Equals("Orange"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Plum") && nameTwo.Equals("Plum") && nameTwo.Equals("Plum"))
+        {
+            bet *= 0.5f;
+        }
+        else if (nameOne.Equals("Seven") && nameTwo.Equals("Seven") && nameTwo.Equals("Seven"))
+        {
+            bet *= 0.5f;
+        }
+
+        return bet;
     }
 
     public void OnLeverPull()
