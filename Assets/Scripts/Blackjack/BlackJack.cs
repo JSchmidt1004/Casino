@@ -16,12 +16,9 @@ public class BlackJack : MonoBehaviour
     }
 
 
-<<<<<<< HEAD
-    //UI
-    public List<Image> playerCards = new List<Image>();
-    public List<Image> dealerCards = new List<Image>();
-=======
->>>>>>> 498c5e78cfec5e97547c7655abe0dcc9f1ed2643
+
+
+
 
     //Logic
     Hand playerHand = new Hand();
@@ -73,9 +70,7 @@ public class BlackJack : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
 
-=======
     public void Stand()
     {
         int playerTotal = playerHand.HandSum();
@@ -101,7 +96,7 @@ public class BlackJack : MonoBehaviour
     {
         instance = this;
     }
->>>>>>> 498c5e78cfec5e97547c7655abe0dcc9f1ed2643
+
 
     public void Start()
     {
