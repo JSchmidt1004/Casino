@@ -17,8 +17,11 @@ public class BlackJack : MonoBehaviour
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> e5299e4f71f3b72e122e2e3a19998a2d90ee3abe
 
     //Logic
     Hand playerHand = new Hand();
@@ -99,7 +102,10 @@ public class BlackJack : MonoBehaviour
     {
         instance = this;
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> e5299e4f71f3b72e122e2e3a19998a2d90ee3abe
 
     public void Start()
     {
