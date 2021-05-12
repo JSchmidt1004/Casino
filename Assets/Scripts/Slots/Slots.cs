@@ -25,12 +25,13 @@ public class Slots : MonoBehaviour
 
     public List<SlotSymbol> symbols = new List<SlotSymbol>();
 
-    float wheelOneTimer;
     int wheelOneIndex;
-    float wheelTwoTimer;
     int wheelTwoIndex;
-    float wheelThreeTimer;
     int wheelThreeIndex;
+
+    float wheelOneTimer;
+    float wheelTwoTimer;
+    float wheelThreeTimer;
 
     int lastSecond = 0;
     bool isSpinning = false;
@@ -48,32 +49,25 @@ public class Slots : MonoBehaviour
                 State = eState.StartGame;
                 break;
             case eState.StartGame:
-                wheelOneTimer = Random.Range(5, 10);
-                wheelTwoTimer = Random.Range(11, 15);
-                wheelThreeTimer = Random.Range(16, 20);
+                //Starting the wheels on different symbols
+                wheelOneIndex = Random.Range(0, 9);
+                wheelTwoIndex = Random.Range(0, 9);
+                wheelThreeIndex = Random.Range(0, 9);
+
+                //Changing the image based on the symbol
+                wheelOneImage.sprite = symbols[(wheelOneIndex % symbols.Count)].slotSprite;
+                wheelTwoImage.sprite = symbols[(wheelTwoIndex % symbols.Count)].slotSprite;
+                wheelThreeImage.sprite = symbols[(wheelThreeIndex % symbols.Count)].slotSprite;
+
                 State = eState.Game;
                 break;
             case eState.Game:
                 if (isSpinning)
                 {
 
-                    wheelOneImage.sprite = symbols[(wheelOneIndex % symbols.Count)].slotSprite;
-                    wheelTwoImage.sprite = symbols[(wheelTwoIndex % symbols.Count)].slotSprite;
-                    wheelThreeImage.sprite = symbols[(wheelThreeIndex % symbols.Count)].slotSprite;
+                    SpinWheel();
 
-                    if (wheelOneTimer > 0) wheelOneTimer -= Time.deltaTime;
-                    if (wheelTwoTimer > 0) wheelTwoTimer -= Time.deltaTime;
-                    if (wheelThreeTimer > 0) wheelThreeTimer -= Time.deltaTime;
-
-                    if (lastSecond != (int)(wheelThreeTimer % 60))
-                    {
-                        lastSecond = (int)(wheelThreeTimer % 60);
-                        wheelOneIndex++;
-                        wheelTwoIndex++;
-                        wheelThreeIndex++;
-                    }
-
-                    if (wheelOneTimer <= 0)
+                    if (wheelThreeTimer <= 0)
                     {
                         isSpinning = false;
                         GetCash(500);
@@ -171,9 +165,9 @@ public class Slots : MonoBehaviour
         if (wheelTwoTimer > 0) wheelTwoTimer -= Time.deltaTime;
         if (wheelThreeTimer > 0) wheelThreeTimer -= Time.deltaTime;
 
-        if (lastSecond != (int)(wheelThreeTimer % 5))
+        if (lastSecond != (int)(wheelThreeTimer % 2))
         {
-            lastSecond = (int)(wheelThreeTimer % 5);
+            lastSecond = (int)(wheelThreeTimer % 2);
             if (wheelOneTimer >= 0) wheelOneIndex++;
             if (wheelTwoTimer >= 0) wheelTwoIndex++;
             if (wheelThreeTimer >= 0) wheelThreeIndex++;
