@@ -16,9 +16,6 @@ public class BlackJack : MonoBehaviour
     }
 
 
-
-
-
     //Logic
     Hand playerHand = new Hand();
     Hand dealerHand = new Hand();
@@ -29,43 +26,49 @@ public class BlackJack : MonoBehaviour
     {
         while (dealerHand.HandSum() < 17)
         {
-            CardHit(ePlayer.Dealer);
+            DealerHit();
         }
     }
 
     public void StartingDraw()
     {
-        Card card = cardDeck.DrawCard();
-
-        dealerHand.AddCard(card);
-        card = cardDeck.DrawCard();
-        playerHand.AddCard(card);
-        card = cardDeck.DrawCard();
-        dealerHand.AddCard(card);
-        card = cardDeck.DrawCard();
-        playerHand.AddCard(card);
+        DealerHit();
+        PlayerHit();
+        DealerHit();
+        PlayerHit();
 
     }
 
     public void PlayerHit()
     {
-        CardHit(ePlayer.Human);
+        Card newCard = CardHit(ePlayer.Human);
         //Update UI
-
+        if (newCard == null) return;
+        BlackjackDisplay.Instance.PlayerDeal(Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank));
     }
 
-    public void CardHit(ePlayer target)
+    public void DealerHit()
+    {
+        Card newCard = CardHit(ePlayer.Dealer);
+        //Update UI
+        if (newCard == null) return;
+        BlackjackDisplay.Instance.DealerDeal(Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank));
+    }
+
+    public Card CardHit(ePlayer target)
     {
         if (target == ePlayer.Human)
         {
-            if (playerHand.cards.Count >= 5) return;
+            if (playerHand.cards.Count >= 5) return null;
             Card newCard = cardDeck.DrawCard();
             playerHand.AddCard(newCard);
+            return newCard;
         } else
         {
-            if (playerHand.cards.Count >= 5) return;
+            if (dealerHand.cards.Count >= 5) return null;
             Card newCard = cardDeck.DrawCard();
-            playerHand.AddCard(newCard);
+            dealerHand.AddCard(newCard);
+            return newCard;
         }
     }
 

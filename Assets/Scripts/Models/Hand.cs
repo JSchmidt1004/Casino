@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand
 {
     public List<Card> cards { get; set; } = new List<Card>();
-    
+
 
     public void AddCard(Card newCard)
     {
