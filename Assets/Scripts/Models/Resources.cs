@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Resources : MonoBehaviour
 {
-    private Resources instance;
+    private static Resources instance;
 
-    public Resources Instance { get { return instance; } }
+    public static Resources Instance { get { return instance; } }
 
     private void Awake()
     {
