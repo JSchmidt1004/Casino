@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class BlackJack : MonoBehaviour
 
     private static BlackJack instance;
     public static BlackJack Instance { get { return instance; } }
+
+    public TMP_Text messageBox;
 
     public enum ePlayer
     {
@@ -52,8 +55,11 @@ public class BlackJack : MonoBehaviour
         Card newCard = CardHit(ePlayer.Dealer);
         //Update UI
         if (newCard == null) return;
-        BlackjackDisplay.Instance.DealerDeal(Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank));
+        Sprite img = (dealerHand.cards.Count > 1) ? Resources.Instance.backRed : Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank);
+        BlackjackDisplay.Instance.DealerDeal(img);
     }
+
+
 
     public Card CardHit(ePlayer target)
     {
@@ -78,18 +84,24 @@ public class BlackJack : MonoBehaviour
         int playerTotal = playerHand.HandSum();
         int dealerTotal = dealerHand.HandSum();
 
+        BlackjackDisplay.Instance.DealerFlip(dealerHand);
+
+        playerTotal = (playerTotal > 21) ? 0 : playerTotal;
+        dealerTotal = (dealerTotal > 21) ? 0 : dealerTotal;
+
+        messageBox.gameObject.SetActive(true);
         //Win, lose, or draw
         if (playerTotal > dealerTotal)
         {
             //Player won bet
-
+            messageBox.text = "You win! Poggers";
         } else if (playerTotal < dealerTotal) {
             //Player lost bet
-
+            messageBox.text = "You lost. Boooo";
         } else
         {
             //Player keeps bet
-
+            messageBox.text = "Evenly matched";
         }
 
         //Reset Deck
@@ -105,9 +117,18 @@ public class BlackJack : MonoBehaviour
 
     public void Start()
     {
-        //cardDeck.ShuffleDeck(60);
-        //StartingDraw();
-        //DealerDraw();
+        Restart();
+    }
+
+    public void Restart()
+    {
+        BlackjackDisplay.Instance.ResetGame();
+        messageBox.gameObject.SetActive(false);
+        dealerHand.cards.Clear();
+        playerHand.cards.Clear();
+        cardDeck.ShuffleDeck(60);
+        StartingDraw();
+        DealerDraw();
     }
 
 }
