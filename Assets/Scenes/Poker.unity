@@ -951,6 +951,7 @@ GameObject:
   - component: {fileID: 1682787759}
   - component: {fileID: 1682787758}
   - component: {fileID: 1682787757}
+  - component: {fileID: 1682787760}
   m_Layer: 5
   m_Name: BackToMenu
   m_TagString: Untagged
@@ -1021,7 +1022,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1682787758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1682787760}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1682787758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,6 +1073,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682787755}
   m_CullTransparentMesh: 1
+--- !u!114 &1682787760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682787755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: Menu
 --- !u!1 &1818791118
 GameObject:
   m_ObjectHideFlags: 0
