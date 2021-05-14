@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RouletteBoard : MonoBehaviour
 {
-    public Node[] nodes;
+    public NumberNode[] numberNodes;
 
     void Start()
     {
-        nodes = GetComponentsInChildren<Node>();
-        Debug.Log(nodes[0].number + " " + nodes[0].isEven + " " + nodes[0].color.ToString());
-        Debug.Log(nodes[1].number + " " + nodes[1].isEven + " " + nodes[1].color.ToString());
+        numberNodes = GetComponentsInChildren<NumberNode>();
+        Debug.Log(numberNodes[0].number + " " + numberNodes[0].isEven + " " + numberNodes[0].color.ToString());
+        Debug.Log(numberNodes[1].number + " " + numberNodes[1].isEven + " " + numberNodes[1].color.ToString());
     }
 
     // Update is called once per frame

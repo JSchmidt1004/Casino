@@ -171,4 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number: 0
   color: 0
-  isEven: 1
+  EnableBet: {fileID: 8424377644229888255}
