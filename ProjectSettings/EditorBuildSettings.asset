@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bank.unity
     guid: 4de1aa1cc52fd334caad0028cff6a0cf
+  - enabled: 1
+    path: Assets/Scenes/Slots.unity
+    guid: 2a94447a54c542046affc1dd35d1cbe2
   m_configObjects: {}

@@ -444,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529251416959205565, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.04
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5529251416959205565, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
       propertyPath: m_LocalScale.y
@@ -480,11 +480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529251416959205565, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 19
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5529251416959205565, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -566
+      value: -494
       objectReference: {fileID: 0}
     - target: {fileID: 5529251416959205565, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -839,7 +839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 35}
+  m_AnchoredPosition: {x: 0, y: 13}
   m_SizeDelta: {x: 0, y: 0.0000038146973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973925246
@@ -889,6 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986285797}
+  - component: {fileID: 986285801}
   - component: {fileID: 986285800}
   - component: {fileID: 986285799}
   - component: {fileID: 986285798}
@@ -916,7 +917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -870, y: 488}
+  m_AnchoredPosition: {x: -866, y: 538}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986285798
@@ -962,7 +963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 986285799}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 986285801}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &986285799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1014,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986285796}
   m_CullTransparentMesh: 1
+--- !u!114 &986285801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986285796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: Menu
 --- !u!1 &1161816569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,17 +1445,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BackToMenu
+  m_text: Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f6a891800ca13345939e1907ec315b2, type: 2}
+  m_sharedMaterial: {fileID: 4234189789891941492, guid: 6f6a891800ca13345939e1907ec315b2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
