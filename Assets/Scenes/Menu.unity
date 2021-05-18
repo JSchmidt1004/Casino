@@ -349,6 +349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 108369353}
+  - component: {fileID: 108369357}
   - component: {fileID: 108369356}
   - component: {fileID: 108369355}
   - component: {fileID: 108369354}
@@ -422,7 +423,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 108369355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 108369357}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &108369355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +474,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108369352}
   m_CullTransparentMesh: 1
+--- !u!114 &108369357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108369352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: Slots
 --- !u!1 &259937494
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +574,7 @@ GameObject:
   - component: {fileID: 531879285}
   - component: {fileID: 531879284}
   - component: {fileID: 531879283}
+  - component: {fileID: 531879286}
   m_Layer: 5
   m_Name: BlackjackButton
   m_TagString: Untagged
@@ -618,7 +645,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 531879284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 531879286}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &531879284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +696,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531879281}
   m_CullTransparentMesh: 1
+--- !u!114 &531879286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531879281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: BlackjackScene
 --- !u!1 &583158341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,6 +2983,7 @@ GameObject:
   - component: {fileID: 2111579831}
   - component: {fileID: 2111579830}
   - component: {fileID: 2111579829}
+  - component: {fileID: 2111579832}
   m_Layer: 5
   m_Name: PokerButton
   m_TagString: Untagged
@@ -3001,7 +3054,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2111579830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2111579832}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2111579830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3040,6 +3105,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111579827}
   m_CullTransparentMesh: 1
+--- !u!114 &2111579832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111579827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: Poker
 --- !u!1 &2142444045
 GameObject:
   m_ObjectHideFlags: 0
