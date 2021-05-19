@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a9d25f2fb9c6e4f9d09526fb93ff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodes: []
+  numberNodes: []
 --- !u!1001 &431863764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4723,6 +4723,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 956861987}
     m_Modifications:
+    - target: {fileID: 7511993587900113750, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
+      propertyPath: m_Size.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511993587900113750, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
+      propertyPath: m_Size.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8424377644229888249, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8424377644690649140, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
       propertyPath: isEven
       value: 0

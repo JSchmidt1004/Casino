@@ -10,13 +10,24 @@ public class RouletteBoard : MonoBehaviour
     void Start()
     {
         numberNodes = GetComponentsInChildren<NumberNode>();
-        Debug.Log(numberNodes[0].number + " " + numberNodes[0].isEven + " " + numberNodes[0].color.ToString());
-        Debug.Log(numberNodes[1].number + " " + numberNodes[1].isEven + " " + numberNodes[1].color.ToString());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePosition = Input.mousePosition;
+
+            foreach (Node node in numberNodes)
+            {
+                if ((mousePosition.x <= node.transform.position.x + 20 && mousePosition.x >= node.transform.position.x - 20) 
+                    && (mousePosition.y <= node.transform.position.y + 20 && mousePosition.y >= node.transform.position.y - 20))
+                {
+                    node.Select();
+                    break;
+                }
+            }
+        }
     }
 }
