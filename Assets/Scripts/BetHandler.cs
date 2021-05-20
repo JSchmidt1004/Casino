@@ -6,6 +6,7 @@ using UnityEngine;
 public class BetHandler : MonoBehaviour
 {
     public List<TMP_Text> betCounts = new List<TMP_Text>();
+    public TMP_Text totalDisplay;
 
     private void Update()
     {
@@ -26,16 +27,22 @@ public class BetHandler : MonoBehaviour
     public void BetOnClick(int index)
     {
         betCounts[index].text = (int.Parse(betCounts[index].text.Trim())+1) + "";
+        UpdateTotal();
     }
     public void BackBetOnClick(int index)
     {
         //Debug.Log("Lower bet, currently betting " + betCounts[index].text.Trim() + " of chip " + (index+1));
         if (int.Parse(betCounts[index].text.Trim()) <= 0) return;
         betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";
+        UpdateTotal();
          
     }
-
-    public int ConfirmBets()
+    /// <summary>
+    /// Gets the total value of all of the bets combined in dollar values
+    /// </summary>
+    /// <param name="clearBets">Determines whether or not to clear all of the bets, true means all bets will be set to zero. False will solely grab the values.</param>
+    /// <returns></returns>
+    public int GetBetValue(bool clearBets)
     {
         //go through each txt and grab its value
         int betTotalValue = 0;
@@ -75,10 +82,18 @@ public class BetHandler : MonoBehaviour
             }
             //multiply it by its chip value and add it to the total
             betTotalValue += (int.Parse(betCounts[i].text.Trim()) * chipValue);
-            betCounts[i].text = "";
+            if(clearBets) betCounts[i].text = "";
 
         }
         //return that
         return betTotalValue;
     }
+
+    void UpdateTotal()
+    {
+        totalDisplay.text = "Total Value : $" + GetBetValue(false);
+    }
+    
+
+
 }
