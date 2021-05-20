@@ -6,13 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Node : Selectable
 {
-    public int betAmount;
+    public int betAmount = 0;
     public bool isSelected = false;
-
-    private void Start()
-    {
-        //yep
-    }
+    //public Sprite sprite;
 
     public override void Select()
     {
@@ -22,12 +18,19 @@ public class Node : Selectable
     public override void OnSelect(BaseEventData eventData)
     {
         isSelected = true;
+        Debug.Log("Selected: " + name);
         base.OnSelect(eventData);
     }
 
-    public override void OnDeselect(BaseEventData eventData)
+    public void Deselect()
     {
-        
-        base.OnDeselect(eventData);
+        isSelected = false;
+        Debug.Log("Deselected: " + name);
+    }
+
+    public void ChangeBet(int amount)
+    {
+        betAmount += amount;
+        if (betAmount < 0) betAmount = 0;
     }
 }
