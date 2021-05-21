@@ -5,11 +5,14 @@ using UnityEngine.EventSystems;
 
 public class RouletteBoard : MonoBehaviour
 {
+    public BetHandler betHandler;
     public NumberNode[] numberNodes;
+    public Node[] nodes;
     Node selectedNode;
 
     void Start()
     {
+        nodes = GetComponentsInChildren<Node>();
         numberNodes = GetComponentsInChildren<NumberNode>();
     }
 
@@ -24,13 +27,18 @@ public class RouletteBoard : MonoBehaviour
             {
                 Vector3 mousePosition = Input.mousePosition;
 
-                foreach (Node node in numberNodes)
+                foreach (Node node in nodes)
                 {
                     if ((mousePosition.x <= node.transform.position.x + 20 && mousePosition.x >= node.transform.position.x - 20) 
                         && (mousePosition.y <= node.transform.position.y + 20 && mousePosition.y >= node.transform.position.y - 20))
                     {
                         node.Select();
+                        int betAmount = betHandler.GetBetValue(true);
+                        betHandler.UpdateTotal();
+
+                        if (selectedNode != null) selectedNode.betAmount = betAmount;
                         selectedNode?.Deselect();
+                         
                         selectedNode = node;
                         break;
                     }

@@ -8,7 +8,6 @@ public class Node : Selectable
 {
     public int betAmount = 0;
     public bool isSelected = false;
-    //public Sprite sprite;
 
     public override void Select()
     {
@@ -25,7 +24,7 @@ public class Node : Selectable
     public void Deselect()
     {
         isSelected = false;
-        Debug.Log("Deselected: " + name);
+        Debug.Log("Deselected: " + name + " Bet Amount: " + betAmount);
     }
 
     public void ChangeBet(int amount)
