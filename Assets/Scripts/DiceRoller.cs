@@ -36,7 +36,7 @@ public class DiceRoller : MonoBehaviour
             if (dice.state != Dice.eState.Waiting) return;
             Vector3 direction = target.position - die.position;
             direction = direction / direction.magnitude;
-            die.AddForce((direction * Random.Range(forceMin, forceMax)), ForceMode.Impulse);
+            die.AddForce((direction * Random.Range(forceMin, forceMax)), ForceMode.VelocityChange);
             die.AddTorque(Vector3.one * Random.Range(torqueMin, torqueMax));
             die.gameObject.GetComponent<Dice>().StartRoll();
             
@@ -64,6 +64,7 @@ public class DiceRoller : MonoBehaviour
             int index = 0;
             foreach(Dice dice in dice)
             {
+                dice.state = Dice.eState.Landed;
                 Transform lowestLocator = null;
                 foreach (Transform locator in dice.sideLocators)
                 {
@@ -74,13 +75,19 @@ public class DiceRoller : MonoBehaviour
                     }
                 }
                 int roll = 7 - (dice.sideLocators.IndexOf(lowestLocator) + 1);
-                Debug.Log(roll);
+                //Debug.Log(lowestLocator.name + ", " + lowestLocator.position.y);
+                //Debug.Log(roll);
                 Rolls[index] = roll;
                 //Debug.Log(Rolls[index]);
                 //dice.isChecked = true;
                 index++;
+                
             }
-            Debug.Log(Rolls[0] + ", " + Rolls[1]);
+            finished = false;
+
+            dice.ForEach(dice => dice.state = Dice.eState.Waiting);
+
+            Debug.Log("Final Result : " + Rolls[0] + ", " + Rolls[1]);
 
         }
     }

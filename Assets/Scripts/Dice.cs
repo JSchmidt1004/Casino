@@ -7,8 +7,9 @@ public class Dice : MonoBehaviour
     //in order
     public List<Transform> sideLocators = new List<Transform>();
     public Transform startPosition;
-    Rigidbody rb;
     public bool isChecked { get; set; } = false;
+    public float timer = 0;
+    Rigidbody rb;
 
     public enum eState
     {
@@ -33,9 +34,11 @@ public class Dice : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 break;
             case eState.Rolling:
-                if (rb.velocity == Vector3.zero) state = eState.Landed;
+                timer += Time.deltaTime;
+                if (rb.velocity == Vector3.zero && timer > 0.5f) state = eState.Landed;
                 break;
             case eState.Landed:
+                timer = 0;
                 if (isChecked) state = eState.Waiting;
                 break;
             default:

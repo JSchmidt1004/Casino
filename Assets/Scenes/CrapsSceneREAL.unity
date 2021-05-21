@@ -1362,6 +1362,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 143222763}
     - target: {fileID: 3816512286358492882, guid: 5de37846e34b03d48b01c429c356bb38, type: 3}
+      propertyPath: forceMax
+      value: 16.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816512286358492882, guid: 5de37846e34b03d48b01c429c356bb38, type: 3}
+      propertyPath: forceMin
+      value: 7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816512286358492882, guid: 5de37846e34b03d48b01c429c356bb38, type: 3}
+      propertyPath: torqueMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816512286358492882, guid: 5de37846e34b03d48b01c429c356bb38, type: 3}
+      propertyPath: torqueMin
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816512286358492882, guid: 5de37846e34b03d48b01c429c356bb38, type: 3}
       propertyPath: TablePlane
       value: 
       objectReference: {fileID: 143222763}
