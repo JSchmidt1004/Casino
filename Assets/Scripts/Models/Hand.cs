@@ -12,6 +12,11 @@ public class Hand
         cards.Add(newCard);
     }
 
+    public void Sort()
+    {
+        cards.Sort();
+    }
+
     public int HandSum()
     {
         int sum = 0;
