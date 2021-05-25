@@ -35,8 +35,16 @@ public class Craps : MonoBehaviour
         dice2 = Random.Range(1,6);
         tempResult = dice1 + dice1;
 
-        Debug.Log(tempResult);
-        EstablishPoint(tempResult);
+        if(sr.sprite == OffSprite)
+        {
+            Debug.Log("Establish Point");
+            EstablishPoint(tempResult);
+        }
+        else if(sr.sprite == OnSprite)
+        {
+            Debug.Log("Game On");
+            GameOn(tempResult);
+        }
     }
 
     private void Awake()
@@ -44,19 +52,18 @@ public class Craps : MonoBehaviour
         instance = this;
     }
 
-    public int point = 0;
-
     public void EstablishPoint(int point)
     {
         //check if they rolled a 2, 3, or 12
         if(point == 2 || point == 2 || point == 12)
         {
-            Debug.Log("Loss On Open");
+            Debug.Log("Loss On Open " + point) ;
         }
 
         else if(point == 7 || point == 11)//check if they rolled a 7 or 11
         {
-            Debug.Log("Pass Line Win");
+            PassBet();
+            Debug.Log("Pass Line Win " + point);
         }
 
         //check if they rolled a 4, 5, 6, 8, 9,10
@@ -64,28 +71,29 @@ public class Craps : MonoBehaviour
         {
             sr.sprite = OnSprite;
             GamePoint = point;
-            Debug.Log(point);
+            Debug.Log(GamePoint);
             //Move the marker on and onto the point
-
 
         }
 
     }
 
-    public void ComeOutRoll()
+    public void GameOn(int point)
     {
- 
+       if(point == GamePoint)
+        {
+            Debug.Log("Point: "+ point + "Game Point: " + GamePoint);
+            Debug.Log("Game point reached. Bets won.");
+            sr.sprite = OffSprite;
+        }
+
+       else if(point == 7 || point == 11)
+        {
+            DontPassBet();
+            sr.sprite = OffSprite;
+            Debug.Log(point + " Game Lost, all bets off");
+        }
     }
-
-    public void Roll()
-    {
-
-    }
-/*
-    public void OnRoll()
-    {
-
-    }*/
 
     public void PassBet()
     {
