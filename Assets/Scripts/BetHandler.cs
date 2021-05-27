@@ -26,14 +26,17 @@ public class BetHandler : MonoBehaviour
 
     public void BetOnClick(int index)
     {
-        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())+1) + "";
+        bool success = int.TryParse(betCounts[index].text.Trim(), out int result);
+        betCounts[index].text = ((success) ? result : 0) + 1 + "";
         UpdateTotal();
     }
     public void BackBetOnClick(int index)
     {
         //Debug.Log("Lower bet, currently betting " + betCounts[index].text.Trim() + " of chip " + (index+1));
-        if (int.Parse(betCounts[index].text.Trim()) <= 0) return;
-        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";
+        bool success = int.TryParse(betCounts[index].text.Trim(), out int result);
+        
+        if (((success) ? result : 0) <= 0) return;
+        betCounts[index].text = (((success) ? result : 1) - 1) + "";
         UpdateTotal();
          
     }
@@ -81,7 +84,8 @@ public class BetHandler : MonoBehaviour
                     break;
             }
             //multiply it by its chip value and add it to the total
-            betTotalValue += (int.Parse(betCounts[i].text.Trim()) * chipValue);
+            bool success = int.TryParse(betCounts[i].text.Trim(), out int result);
+            betTotalValue += (success) ? (result * chipValue) : 0;
             if(clearBets) betCounts[i].text = "";
 
         }
@@ -89,7 +93,7 @@ public class BetHandler : MonoBehaviour
         return betTotalValue;
     }
 
-    void UpdateTotal()
+    public void UpdateTotal()
     {
         totalDisplay.text = "Total Value : $" + GetBetValue(false);
     }
