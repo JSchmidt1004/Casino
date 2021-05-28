@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Node : Selectable
 {
-    public int betAmount;
+    public int betAmount = 0;
     public bool isSelected = false;
 
     private void Start()
@@ -29,5 +29,11 @@ public class Node : Selectable
     {
         
         base.OnDeselect(eventData);
+    }
+
+    public void ChangeBet(int amount)
+    {
+        betAmount += amount;
+        if (betAmount < 0) betAmount = 0;
     }
 }
