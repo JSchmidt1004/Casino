@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: Slots
+  newScene: SlotsHTP
 --- !u!1 &259937494
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: BlackjackScene
+  newScene: BlackJackHTP
 --- !u!1 &583158341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,6 +1661,7 @@ GameObject:
   - component: {fileID: 1125270586}
   - component: {fileID: 1125270585}
   - component: {fileID: 1125270584}
+  - component: {fileID: 1125270587}
   m_Layer: 5
   m_Name: RouletteButton
   m_TagString: Untagged
@@ -1731,7 +1732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1125270585}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1125270587}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1125270585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,6 +1783,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125270582}
   m_CullTransparentMesh: 1
+--- !u!114 &1125270587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125270582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: RouletteHTP
 --- !u!1 &1134731150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,6 +1808,7 @@ GameObject:
   - component: {fileID: 1134731154}
   - component: {fileID: 1134731153}
   - component: {fileID: 1134731152}
+  - component: {fileID: 1134731155}
   m_Layer: 5
   m_Name: CrapsButton
   m_TagString: Untagged
@@ -1852,7 +1879,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1134731153}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1134731155}
+        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
+        m_MethodName: SceneTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1134731153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +1930,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134731150}
   m_CullTransparentMesh: 1
+--- !u!114 &1134731155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134731150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newScene: CrapsHTP
 --- !u!1 &1224293122
 GameObject:
   m_ObjectHideFlags: 0
@@ -3117,7 +3169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: Poker
+  newScene: PokerHTP
 --- !u!1 &2142444045
 GameObject:
   m_ObjectHideFlags: 0
