@@ -8,6 +8,8 @@ public class Node : Selectable
 {
     public int betAmount = 0;
     public bool isSelected = false;
+    public int width = 20;
+    public int height = 20;
 
     public override void Select()
     {

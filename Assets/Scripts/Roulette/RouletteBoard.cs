@@ -29,8 +29,8 @@ public class RouletteBoard : MonoBehaviour
 
                 foreach (Node node in nodes)
                 {
-                    if ((mousePosition.x <= node.transform.position.x + 20 && mousePosition.x >= node.transform.position.x - 20) 
-                        && (mousePosition.y <= node.transform.position.y + 20 && mousePosition.y >= node.transform.position.y - 20))
+                    if ((mousePosition.x <= node.transform.position.x + (node.width * 0.5f) && mousePosition.x >= node.transform.position.x - (node.width * 0.5f)) 
+                        && (mousePosition.y <= node.transform.position.y + (node.height * 0.5f) && mousePosition.y >= node.transform.position.y - (node.height * 0.5f)))
                     {
                         node.Select();
                         int betAmount = betHandler.GetBetValue(true);
