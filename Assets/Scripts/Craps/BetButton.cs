@@ -16,4 +16,10 @@ public class BetButton : Node
         ROLLBETS,
         FIELDBET
     }
+
+    public override void OnDeselect(BaseEventData eventData)
+    {
+        isSelected = false;
+        Debug.Log("Deselected: " + name + " Bet Amount: " + betAmount);
+    }
 }

@@ -3002,7 +3002,7 @@ GameObject:
   - component: {fileID: 1239851634}
   m_Layer: 5
   m_Name: BoardIcon
-  m_TagString: Untagged
+  m_TagString: CrapsBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3453,7 +3453,7 @@ GameObject:
   - component: {fileID: 1443886357}
   m_Layer: 5
   m_Name: GameBoard
-  m_TagString: Untagged
+  m_TagString: CrapsBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3562,6 +3562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5d4f7638eb2c945a1fb47c9bb72cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betHandler: {fileID: 1822824743}
+  boardNodes: []
+  nodes: []
 --- !u!1 &1504046041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4243,6 +4246,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670552170}
   m_CullTransparentMesh: 1
+--- !u!114 &1822824743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180510723638151371, guid: 097db33a90e5d96479cea360f3de72f7, type: 3}
+  m_PrefabInstance: {fileID: 728404282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a9e016291888b499c70b71642e85d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1861710704
 GameObject:
   m_ObjectHideFlags: 0

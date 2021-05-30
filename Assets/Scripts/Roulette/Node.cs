@@ -32,10 +32,4 @@ public class Node : Selectable
         betAmount += amount;
         if (betAmount < 0) betAmount = 0;
     }
-
-    public void ChangeBet(int amount)
-    {
-        betAmount += amount;
-        if (betAmount < 0) betAmount = 0;
-    }
 }
