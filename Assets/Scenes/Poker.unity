@@ -386,9 +386,8 @@ GameObject:
   - component: {fileID: 267288540}
   - component: {fileID: 267288539}
   - component: {fileID: 267288538}
-  - component: {fileID: 267288537}
   m_Layer: 5
-  m_Name: BackToMenu (1)
+  m_Name: HoldButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,19 +413,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: 27}
   m_SizeDelta: {x: 135.58, y: 30}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &267288537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267288535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newScene: Menu
 --- !u!114 &267288538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,9 +457,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 267288537}
-        m_TargetAssemblyTypeName: ButtonScene, Assembly-CSharp
-        m_MethodName: SceneTransition
+      - m_Target: {fileID: 961428460}
+        m_TargetAssemblyTypeName: Poker, Assembly-CSharp
+        m_MethodName: Hold
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
