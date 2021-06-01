@@ -38,7 +38,7 @@ public class Hand
                     sum += 10;
                     break;
                 default:
-                    sum += ((int)card.Rank);
+                    sum += ((int)card.Rank) + 1;
                     break;
             }  
         }
