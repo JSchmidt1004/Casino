@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameHowToPlayScenes/RouletteHTP.unity
     guid: b3b1954eb48faef408a2b0ee35c604d1
+  - enabled: 1
+    path: Assets/Scenes/GameHowToPlayScenes/SlotsHTP.unity
+    guid: cf684022436810544808633f8cfbff66
   m_configObjects: {}
