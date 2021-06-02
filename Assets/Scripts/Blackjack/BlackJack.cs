@@ -105,14 +105,13 @@ public class BlackJack : MonoBehaviour
         playerTotal = (playerTotal > 21) ? 0 : playerTotal;
         dealerTotal = (dealerTotal > 21) ? 0 : dealerTotal;
 
-        messageBox.gameObject.SetActive(true);
         //Win, lose, or draw
         if (playerTotal > dealerTotal)
         {
             //Player won bet
 
             Debug.Log("Won");
-            int betTotal = BetHandler.Instance.ConfirmBets();
+            int betTotal = BetHandler.Instance.GetBetValue();
             BetHandler.Instance.AddCash(betTotal * 2);
 
         } else if (playerTotal < dealerTotal) {
@@ -120,13 +119,13 @@ public class BlackJack : MonoBehaviour
             Debug.Log("Lose");
 
             //Take money
-            int betTotal = BetHandler.Instance.ConfirmBets();
+            int betTotal = BetHandler.Instance.GetBetValue();
         } else
         {
             //Player keeps bet
             Debug.Log("Tie");
 
-            int betTotal = BetHandler.Instance.ConfirmBets();
+            int betTotal = BetHandler.Instance.GetBetValue();
             BetHandler.Instance.AddCash(betTotal);
             
         }

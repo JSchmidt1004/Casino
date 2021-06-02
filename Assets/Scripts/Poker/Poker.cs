@@ -348,7 +348,7 @@ public class Poker : MonoBehaviour
                 break;
         }
 
-        return payout * BetHandler.Instance.ConfirmBets();
+        return payout * BetHandler.Instance.GetBetValue();
     }
 
 

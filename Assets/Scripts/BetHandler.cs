@@ -36,9 +36,9 @@ public class BetHandler : MonoBehaviour
 
     public void BetOnClick(int index)
     {
-        if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
+/*        if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
         betCounts[index].text = (int.Parse(betCounts[index].text.Trim())+1) + "";
-
+*/
         bool success = int.TryParse(betCounts[index].text.Trim(), out int result);
         betCounts[index].text = ((success) ? result : 0) + 1 + "";
         UpdateTotal();
@@ -48,9 +48,9 @@ public class BetHandler : MonoBehaviour
     {
         //Debug.Log("Lower bet, currently betting " + betCounts[index].text.Trim() + " of chip " + (index+1));
 
-        if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
+        /*if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
         if (int.Parse(betCounts[index].text.Trim()) <= 0) return;
-        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";
+        betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";*/
 
         bool success = int.TryParse(betCounts[index].text.Trim(), out int result);
         
@@ -65,7 +65,7 @@ public class BetHandler : MonoBehaviour
     /// </summary>
     /// <param name="clearBets">Determines whether or not to clear all of the bets, true means all bets will be set to zero. False will solely grab the values.</param>
     /// <returns></returns>
-    public int GetBetValue(bool clearBets)
+    public int GetBetValue(bool clearBets = true)
     {
         //go through each txt and grab its value
         int betTotalValue = 0;
@@ -105,9 +105,9 @@ public class BetHandler : MonoBehaviour
             }
             //multiply it by its chip value and add it to the total
 
-            int num = (betCounts[i].text.Trim().Equals("")) ? 0 : int.Parse(betCounts[i].text.Trim());
-            betTotalValue += (num * chipValue);
-            betCounts[i].text = "";
+            /*int num = (betCounts[i].text.Trim().Equals("")) ? 0 : int.Parse(betCounts[i].text.Trim());
+            betTotalValue += (num * chipValue);*/
+            
 
             bool success = int.TryParse(betCounts[i].text.Trim(), out int result);
             betTotalValue += (success) ? (result * chipValue) : 0;
