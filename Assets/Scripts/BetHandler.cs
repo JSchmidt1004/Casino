@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class BetHandler : MonoBehaviour
 {
+    private static BetHandler instance;
+    public static BetHandler Instance { get { return instance; } }
+
     public List<TMP_Text> betCounts = new List<TMP_Text>();
+
+    public PlayerData playerData;
 
     private void Update()
     {
@@ -23,13 +28,20 @@ public class BetHandler : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void BetOnClick(int index)
     {
+        if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
         betCounts[index].text = (int.Parse(betCounts[index].text.Trim())+1) + "";
     }
     public void BackBetOnClick(int index)
     {
         //Debug.Log("Lower bet, currently betting " + betCounts[index].text.Trim() + " of chip " + (index+1));
+        if (betCounts[index].text.Equals("")) betCounts[index].text = "0";
         if (int.Parse(betCounts[index].text.Trim()) <= 0) return;
         betCounts[index].text = (int.Parse(betCounts[index].text.Trim())-1) + "";
          
@@ -74,11 +86,18 @@ public class BetHandler : MonoBehaviour
                     break;
             }
             //multiply it by its chip value and add it to the total
-            betTotalValue += (int.Parse(betCounts[i].text.Trim()) * chipValue);
+            int num = (betCounts[i].text.Trim().Equals("")) ? 0 : int.Parse(betCounts[i].text.Trim());
+            betTotalValue += (num * chipValue);
             betCounts[i].text = "";
 
         }
         //return that
+        playerData.cash -= betTotalValue;
         return betTotalValue;
+    }
+
+    public void AddCash(int newCash)
+    {
+        playerData.cash += newCash;
     }
 }

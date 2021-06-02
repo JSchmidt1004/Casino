@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 5529251415790108016}
   - {fileID: 5529251416700683115}
   - {fileID: 5529251416711389053}
+  playerData: {fileID: 11400000, guid: 4a93b977a3009744db6acb74543dbe14, type: 2}
 --- !u!1 &5529251415526491647
 GameObject:
   m_ObjectHideFlags: 0

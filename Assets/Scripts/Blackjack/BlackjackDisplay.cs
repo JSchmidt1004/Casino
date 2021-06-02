@@ -23,7 +23,7 @@ public class BlackjackDisplay : MonoBehaviour
 
     private void Start()
     {
-        ResetGame();
+        //ResetGame();
     }
 
     public void PlayerDeal(Sprite img)
@@ -35,7 +35,8 @@ public class BlackjackDisplay : MonoBehaviour
 
     public void DealerDeal(Sprite img)
     {
-        dealerImages[dealerIndex].sprite = img;
+        
+        dealerImages[dealerIndex].sprite = (dealerIndex == 0) ? img : Resources.Instance.backRed;
         dealerImages[dealerIndex].color = Color.white;
         dealerIndex++;
     }
@@ -47,16 +48,27 @@ public class BlackjackDisplay : MonoBehaviour
         foreach (var img in playerImages)
         {
             img.sprite = null;
+            img.color = Color.clear;
         }
         foreach (var img in dealerImages)
         {
             img.sprite = null;
+            img.color = Color.clear;
         }
     }
 
     public void PlayerBet()
     {
         //playerImages[playerIndex].GetComponentInChildren<Image>().sprite = resources
+    }
+
+    public void RevealDealer(Hand dealerHand)
+    {
+        for (int i = 1; i < dealerHand.cards.Count; i++)
+        {
+            Card card = dealerHand.cards[i];
+            dealerImages[i].sprite = Resources.Instance.GetCardSprite(card.Suit, card.Rank);
+        }
     }
 
     

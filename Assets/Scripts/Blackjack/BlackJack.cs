@@ -23,19 +23,33 @@ public class BlackJack : MonoBehaviour
 
     public void DealerDraw()
     {
-        while (dealerHand.HandSum() < 17)
+        int sum = dealerHand.HandSum();
+        while (sum < 17 && sum != 0 && dealerHand.cards.Count < 5)
         {
             DealerHit();
+            sum = dealerHand.HandSum();
         }
     }
 
     public void StartingDraw()
     {
+        BlackjackDisplay.Instance.ResetGame();
         DealerHit();
         PlayerHit();
         DealerHit();
         PlayerHit();
+        DealerDraw();
+    }
 
+    public void OnDeckClick()
+    {
+        if (playerHand.cards.Count == 0)
+        {
+            StartingDraw();
+        } else
+        {
+            PlayerHit();
+        }
     }
 
     public void PlayerHit()
@@ -74,26 +88,47 @@ public class BlackJack : MonoBehaviour
 
     public void Stand()
     {
+        BlackjackDisplay.Instance.RevealDealer(dealerHand);
         int playerTotal = playerHand.HandSum();
+        if (playerTotal > 21) playerTotal = 0;
         int dealerTotal = dealerHand.HandSum();
+        if (dealerTotal > 21) dealerTotal = 0;
 
         //Win, lose, or draw
         if (playerTotal > dealerTotal)
         {
             //Player won bet
+            Debug.Log("Won");
+            int betTotal = BetHandler.Instance.ConfirmBets();
+            BetHandler.Instance.AddCash(betTotal * 2);
 
         } else if (playerTotal < dealerTotal) {
             //Player lost bet
+            Debug.Log("Lose");
 
+            //Take money
+            int betTotal = BetHandler.Instance.ConfirmBets();
         } else
         {
             //Player keeps bet
+            Debug.Log("Tie");
 
+            int betTotal = BetHandler.Instance.ConfirmBets();
+            BetHandler.Instance.AddCash(betTotal);
+            
         }
 
+        ResetDeck();
+    }
+
+    private void ResetDeck()
+    {
         //Reset Deck
         cardDeck = new Deck();
         cardDeck.ShuffleDeck(60);
+
+        playerHand.cards.Clear();
+        dealerHand.cards.Clear();
     }
 
     private void Awake()
@@ -103,9 +138,10 @@ public class BlackJack : MonoBehaviour
 
     public void Start()
     {
-        //cardDeck.ShuffleDeck(60);
-        //StartingDraw();
-        //DealerDraw();
+
+        cardDeck.ShuffleDeck(60);
+        StartingDraw();
+        
     }
 
 }
