@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783bcfd9ffffc64fb71405d913ed63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: Craps
+  newScene: CrapsSceneREAL
 --- !u!1 &389149956
 GameObject:
   m_ObjectHideFlags: 0
