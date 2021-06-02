@@ -33,6 +33,14 @@ public class BlackjackDisplay : MonoBehaviour
         playerIndex++;
     }
 
+    public void DealerFlip(Hand dealerHand)
+    {
+        for (int i = 0; i < dealerHand.cards.Count; i++)
+        {
+            dealerImages[i].sprite = Resources.Instance.GetCardSprite(dealerHand.cards[i].Suit, dealerHand.cards[i].Rank);
+        }
+    }
+
     public void DealerDeal(Sprite img)
     {
         

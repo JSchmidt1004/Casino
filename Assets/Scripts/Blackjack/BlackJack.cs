@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class BlackJack : MonoBehaviour
 
     private static BlackJack instance;
     public static BlackJack Instance { get { return instance; } }
+
+    public TMP_Text messageBox;
 
     public enum ePlayer
     {
@@ -65,8 +68,11 @@ public class BlackJack : MonoBehaviour
         Card newCard = CardHit(ePlayer.Dealer);
         //Update UI
         if (newCard == null) return;
-        BlackjackDisplay.Instance.DealerDeal(Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank));
+        Sprite img = (dealerHand.cards.Count > 1) ? Resources.Instance.backRed : Resources.Instance.GetCardSprite(newCard.Suit, newCard.Rank);
+        BlackjackDisplay.Instance.DealerDeal(img);
     }
+
+
 
     public Card CardHit(ePlayer target)
     {
@@ -94,10 +100,17 @@ public class BlackJack : MonoBehaviour
         int dealerTotal = dealerHand.HandSum();
         if (dealerTotal > 21) dealerTotal = 0;
 
+        BlackjackDisplay.Instance.DealerFlip(dealerHand);
+
+        playerTotal = (playerTotal > 21) ? 0 : playerTotal;
+        dealerTotal = (dealerTotal > 21) ? 0 : dealerTotal;
+
+        messageBox.gameObject.SetActive(true);
         //Win, lose, or draw
         if (playerTotal > dealerTotal)
         {
             //Player won bet
+
             Debug.Log("Won");
             int betTotal = BetHandler.Instance.ConfirmBets();
             BetHandler.Instance.AddCash(betTotal * 2);
@@ -138,10 +151,19 @@ public class BlackJack : MonoBehaviour
 
     public void Start()
     {
-
         cardDeck.ShuffleDeck(60);
         StartingDraw();
-        
+    }
+
+    public void Restart()
+    {
+        BlackjackDisplay.Instance.ResetGame();
+        messageBox.gameObject.SetActive(false);
+        dealerHand.cards.Clear();
+        playerHand.cards.Clear();
+        cardDeck.ShuffleDeck(60);
+        StartingDraw();
+        DealerDraw();
     }
 
 }
