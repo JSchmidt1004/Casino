@@ -7,9 +7,9 @@ public class Wheel : MonoBehaviour
     public float spinTimeMin = 5;
     public float spinTimeMax = 10;
     public GameObject ball;
+    public bool isSpinning { get; set; } = false;
 
     WheelPocket[] pockets;
-    bool isSpinning = false;
     float spinningTimer;
     float pocketIndex = 0;
 
@@ -33,16 +33,19 @@ public class Wheel : MonoBehaviour
             ball.transform.rotation = ballRotation;
             if (spinningTimer <= 0)
             {
-                ;
                 isSpinning = false; 
                 Debug.Log("Stopped On: " + pockets[currentIndex].value);
+                Roulette.Instance.HandleBets(pockets[currentIndex].value);
             }
         }
     }
 
     public void Spin()
     {
-        spinningTimer = Random.Range(spinTimeMin, spinTimeMax);
-        isSpinning = true;
+        if (!isSpinning)
+        {
+            spinningTimer = Random.Range(spinTimeMin, spinTimeMax);
+            isSpinning = true;
+        }
     }
 }

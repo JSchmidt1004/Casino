@@ -46,4 +46,13 @@ public class RouletteBoard : MonoBehaviour
             }
         }
     }
+
+    public Node FindNodeWithValue(int value)
+    {
+        foreach(NumberNode node in numberNodes)
+        {
+            if (node.number == value) return node;
+        }
+        return null;
+    }
 }

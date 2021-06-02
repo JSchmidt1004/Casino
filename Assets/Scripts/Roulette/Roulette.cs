@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Roulette : MonoBehaviour
 {
-    Roulette instance;
-    public Roulette Instance { get { return instance; } }
+    static Roulette instance;
+    public static Roulette Instance { get { return instance; } }
 
     public RouletteBoard board;
     public Wheel wheel;
+    public PlayerData playerData;
 
     void Awake()
     {
@@ -23,6 +24,35 @@ public class Roulette : MonoBehaviour
 
     public void onSpin()
     {
-        wheel.Spin();
+
+        if (!wheel.isSpinning && GetTotalBetAmount() > 0)
+        {
+            wheel.Spin();
+        }
+    }
+
+    public int GetTotalBetAmount(bool reset = false)
+    {
+        int totalAmount = 0;
+        foreach(Node node in board.nodes)
+        {
+            totalAmount += node.betAmount;
+            if (reset) node.betAmount = 0;
+        }
+        return totalAmount;
+    }
+
+    public void HandleBets(int value)
+    {
+        int rewardAmount = 0;
+        if (value != 0)
+        {
+            Node numberValue = board.FindNodeWithValue(value);
+            rewardAmount = numberValue.betAmount * 35;
+
+        }
+        playerData.chips -= GetTotalBetAmount(true);
+        playerData.chips += rewardAmount;
+
     }
 }

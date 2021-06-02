@@ -5651,6 +5651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 318263184}
   wheel: {fileID: 782914830}
+  playerData: {fileID: 11400000, guid: 4a93b977a3009744db6acb74543dbe14, type: 2}
 --- !u!1001 &1344322782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9654,6 +9655,10 @@ PrefabInstance:
     - target: {fileID: 8424377644690649140, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
       propertyPath: number
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8424377644690649140, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
+      propertyPath: m_Transition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8424377644690649141, guid: 8fe5ba380fdfd4a4fbffb148f155b2fc, type: 3}
       propertyPath: m_Pivot.x
