@@ -65,6 +65,7 @@ public class Craps : MonoBehaviour
         {
             //Debug.Log("Game On");
             GameOn(tempResult);
+            Debug.Log("AHHHH");
         }
     }
 
