@@ -17,14 +17,27 @@ public class Craps : MonoBehaviour
     public Image sr = null;
     public Sprite OnSprite;
     public Sprite OffSprite;
+    public DiceRoller roll;
+
+    public float waitTime = 6;
+    public float waitTimer = 0;
+
+    public List<BetButton> buttons = new List<BetButton>();
+
+    public void Update()
+    {
+        
+    }
 
     public int EstablishRollDice()
     {
         dice1 = Random.Range(1,6);
         dice2 = Random.Range(1,6);
-        tempResult = dice1 + dice1;
+        //roll.RollDice();
 
+        tempResult = dice1 + dice2;
         EstablishPoint(tempResult);
+
 
         return tempResult;
     }
@@ -33,9 +46,10 @@ public class Craps : MonoBehaviour
     {
         dice1 = Random.Range(1,6);
         dice2 = Random.Range(1,6);
-        tempResult = dice1 + dice1;
+        //roll.RollDice();
+        tempResult = dice1 + dice2;
 
-        if(sr.sprite == OffSprite)
+        if (sr.sprite == OffSprite)
         {
             Debug.Log("Establish Point");
             EstablishPoint(tempResult);
@@ -64,6 +78,8 @@ public class Craps : MonoBehaviour
         {
             PassBet();
             Debug.Log("Pass Line Win " + point);
+            
+            
         }
 
         //check if they rolled a 4, 5, 6, 8, 9,10
@@ -73,9 +89,7 @@ public class Craps : MonoBehaviour
             GamePoint = point;
             Debug.Log(GamePoint);
             //Move the marker on and onto the point
-
         }
-
     }
 
     public void GameOn(int point)
@@ -84,6 +98,20 @@ public class Craps : MonoBehaviour
         {
             Debug.Log("Point: "+ point + "Game Point: " + GamePoint);
             Debug.Log("Game point reached. Bets won.");
+
+            foreach(BetButton button in buttons)
+            {
+                if (button.betType == BetButton.SetBet.POINTBETS)
+                {
+                    Debug.Log(button.name + "stays");
+                }
+                else if(button.betType == BetButton.SetBet.DONTPASSLINE)
+                {
+                    button.bet = false;
+                    Debug.Log(button.name + "loses");
+                }
+            }
+
             sr.sprite = OffSprite;
         }
 
@@ -91,7 +119,21 @@ public class Craps : MonoBehaviour
         {
             DontPassBet();
             sr.sprite = OffSprite;
-            Debug.Log(point + " Game Lost, all bets off");
+
+            foreach (BetButton button in buttons)
+            {
+                if (button.betType == BetButton.SetBet.POINTBETS || button.betType == BetButton.SetBet.FIELDBET || button.betType == BetButton.SetBet.ROLLBETS)
+                {
+                    button.bet = false;
+                    Debug.Log(button.name + " loses");
+                }
+                if (button.betType == BetButton.SetBet.DONTPASSLINE)
+                {
+                    button.bet = false;
+                    Debug.Log(button.name + " wins");
+                }
+            }
+                Debug.Log(point + " Game Lost, all bets off");
         }
     }
 

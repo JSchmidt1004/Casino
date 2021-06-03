@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BetButton : Node
+public class BetButton : MonoBehaviour
 {
+    public GameObject currentObject;
     public SetBet betType = SetBet.POINTBETS;
+
+    public bool bet = false;
+    public Image sr = null;
+    public Sprite SelectSprite;
+    public Sprite UnselectedSprite;
 
     public enum SetBet
     {
@@ -17,9 +23,30 @@ public class BetButton : Node
         FIELDBET
     }
 
-    public override void OnDeselect(BaseEventData eventData)
+    public void Start()
     {
-        isSelected = false;
-        Debug.Log("Deselected: " + name + " Bet Amount: " + betAmount);
+    
     }
+
+    public void Update()
+    {
+        if(bet == false)
+        {
+            sr.sprite = UnselectedSprite;
+        }
+        else
+        {
+            sr.sprite = SelectSprite;
+        }
+    }
+
+    public void TestClick()
+    {
+        Debug.Log(betType.ToString());
+        //this.isActiveAndEnabled = true;
+        //sr.sprite =
+        bet = true;
+        
+    }
+
 }

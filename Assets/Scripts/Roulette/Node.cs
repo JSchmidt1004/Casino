@@ -21,7 +21,7 @@ public class Node : Selectable
         base.OnSelect(eventData);
     }
 
-    public void Deselect()
+    public virtual void Deselect()
     {
         isSelected = false;
         Debug.Log("Deselected: " + name + " Bet Amount: " + betAmount);

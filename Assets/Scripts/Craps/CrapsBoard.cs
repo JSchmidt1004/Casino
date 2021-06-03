@@ -28,14 +28,16 @@ public class CrapsBoard : MonoBehaviour
 
                 foreach (Node node in nodes)
                 {
-                    if ((mousePosition.x <= node.transform.position.x + 20 && mousePosition.x >= node.transform.position.x - 20)
-                        && (mousePosition.y <= node.transform.position.y + 20 && mousePosition.y >= node.transform.position.y - 20))
+                    if ((mousePosition.x <= node.transform.position.x + 40 && mousePosition.x >= node.transform.position.x - 40)
+                        && (mousePosition.y <= node.transform.position.y + 40 && mousePosition.y >= node.transform.position.y - 40))
                     {
+                        Debug.Log("node in nodes");
                         node.Select();
                         int betAmount = betHandler.GetBetValue(true);
                         betHandler.UpdateTotal();
 
                         if (selectedNode != null) selectedNode.betAmount = betAmount;
+                        Debug.Log(selectedNode.name);
                         selectedNode?.Deselect();
 
                         selectedNode = node;
