@@ -7,6 +7,9 @@ public class Roulette : MonoBehaviour
     Roulette instance;
     public Roulette Instance { get { return instance; } }
 
+    public RouletteBoard board;
+    public Wheel wheel;
+
     void Awake()
     {
         instance = this;
@@ -16,5 +19,10 @@ public class Roulette : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void onSpin()
+    {
+        wheel.Spin();
     }
 }
