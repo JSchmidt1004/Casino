@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - RouletteBoard
+  - CrapsBoard
   layers:
   - Default
   - TransparentFX
