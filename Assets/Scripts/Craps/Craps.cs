@@ -17,7 +17,10 @@ public class Craps : MonoBehaviour
     public Image sr = null;
     public Sprite OnSprite;
     public Sprite OffSprite;
-    public DiceRoller roll;
+    //public DiceRoller roll;
+    public Text rollText;
+    public Text pointText;
+    public Text GameState;
 
     public float waitTime = 6;
     public float waitTimer = 0;
@@ -38,6 +41,7 @@ public class Craps : MonoBehaviour
         tempResult = dice1 + dice2;
         EstablishPoint(tempResult);
 
+        rollText.text = "Roll: " + tempResult;
 
         return tempResult;
     }
@@ -46,17 +50,20 @@ public class Craps : MonoBehaviour
     {
         dice1 = Random.Range(1,6);
         dice2 = Random.Range(1,6);
+
         //roll.RollDice();
         tempResult = dice1 + dice2;
 
+        rollText.text = "Roll: " + tempResult;
+
         if (sr.sprite == OffSprite)
         {
-            Debug.Log("Establish Point");
+            GameState.text = "Point Established. Point is " + tempResult;
             EstablishPoint(tempResult);
         }
         else if(sr.sprite == OnSprite)
         {
-            Debug.Log("Game On");
+            //Debug.Log("Game On");
             GameOn(tempResult);
         }
     }
@@ -69,14 +76,20 @@ public class Craps : MonoBehaviour
     public void EstablishPoint(int point)
     {
         //check if they rolled a 2, 3, or 12
-        if(point == 2 || point == 2 || point == 12)
+        if(point == 2 || point == 3 || point == 12)
         {
+            LosePassBet();
+            LosePointBet();
+            LoseFieldBet();
+            LoseDontPassBet();
+            GameState.text = "Loss on Open " + point;
             Debug.Log("Loss On Open " + point) ;
         }
 
         else if(point == 7 || point == 11)//check if they rolled a 7 or 11
         {
-            PassBet();
+            WinPassBet();
+            GameState.text = "Pass Line Win " + point;
             Debug.Log("Pass Line Win " + point);
             
             
@@ -87,7 +100,9 @@ public class Craps : MonoBehaviour
         {
             sr.sprite = OnSprite;
             GamePoint = point;
-            Debug.Log(GamePoint);
+            pointText.text = "Point: " + GamePoint;
+            //Debug.Log(GamePoint);
+            WinPointBet(tempResult);
             //Move the marker on and onto the point
         }
     }
@@ -96,59 +111,168 @@ public class Craps : MonoBehaviour
     {
        if(point == GamePoint)
         {
-            Debug.Log("Point: "+ point + "Game Point: " + GamePoint);
-            Debug.Log("Game point reached. Bets won.");
+            //Debug.Log("Point: "+ point + "Game Point: " + GamePoint);
+            //Debug.Log("Game point reached. Bets won.");
+            GameState.text = "Rolled a " + point + ". Game Points Reached. Bets won. Don't pass lost.";
 
-            foreach(BetButton button in buttons)
-            {
-                if (button.betType == BetButton.SetBet.POINTBETS)
-                {
-                    Debug.Log(button.name + "stays");
-                }
-                else if(button.betType == BetButton.SetBet.DONTPASSLINE)
-                {
-                    button.bet = false;
-                    Debug.Log(button.name + "loses");
-                }
-            }
+            WinPointBet(tempResult);
+            LoseDontPassBet();
 
             sr.sprite = OffSprite;
         }
 
        else if(point == 7 || point == 11)
         {
-            DontPassBet();
+            WinDontPassBet();
+            LosePointBet();
+            LoseRollBet();
+            LoseFieldBet();
+
             sr.sprite = OffSprite;
 
-            foreach (BetButton button in buttons)
+            GameState.text = "Rolled a " + point + ". Game Lost, all bets off. Don't pass win.";
+            Debug.Log(point + " Game Lost, all bets off");
+        }
+    }
+
+    public void WinPassBet()
+    {
+        foreach(BetButton button in buttons)
+        {
+            if(button.betType == BetButton.SetBet.PASSLINE)
             {
-                if (button.betType == BetButton.SetBet.POINTBETS || button.betType == BetButton.SetBet.FIELDBET || button.betType == BetButton.SetBet.ROLLBETS)
+                if(button.bet)
                 {
                     button.bet = false;
-                    Debug.Log(button.name + " loses");
                 }
-                if (button.betType == BetButton.SetBet.DONTPASSLINE)
+            }
+        }
+    }
+
+    public void LosePassBet()
+    {
+
+    }
+
+    public void WinDontPassBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.DONTPASSLINE)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+            }
+        }
+    }
+
+    public void LoseDontPassBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.DONTPASSLINE)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " loses");
+            }
+        }
+    }
+
+    public void WinRollBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.ROLLBETS)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " wins");
+            }
+        }
+    }
+    public void LoseRollBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.ROLLBETS)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " loses");
+            }
+        }
+    }
+
+    public void WinPointBet(int point)
+    {
+        foreach(BetButton button in buttons)
+        {
+            if(button.betType == BetButton.SetBet.POINTBETS)
+            {
+                int curNum = System.Int32.Parse(button.name);
+
+                if (curNum == point)
                 {
                     button.bet = false;
                     Debug.Log(button.name + " wins");
                 }
             }
-                Debug.Log(point + " Game Lost, all bets off");
+
         }
     }
 
-    public void PassBet()
+    public void LosePointBet()
     {
-        
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.POINTBETS)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " lose");
+            }
+        }
     }
 
-    public void DontPassBet()
-    {
 
+    public void WinFieldBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.POINTBETS)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " win");
+            }
+        }
+    }
+    public void LoseFieldBet()
+    {
+        foreach (BetButton button in buttons)
+        {
+            if (button.betType == BetButton.SetBet.POINTBETS)
+            {
+                if (button.bet)
+                {
+                    button.bet = false;
+                }
+                Debug.Log(button.name + " lose");
+            }
+        }
     }
 
-    public void SetBet(float modifier)
-    {
-
-    }
 }
