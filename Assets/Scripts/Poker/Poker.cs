@@ -14,6 +14,7 @@ public class Poker : MonoBehaviour
     //Logic
     Hand playerHand = new Hand();
     bool[] held = new bool[5];
+    private bool hasDrew = false;
 
 
     Deck cardDeck;
@@ -47,6 +48,7 @@ public class Poker : MonoBehaviour
 
     public void StartingDraw()
     {
+        hasDrew = false;
         cardDeck = new Deck();
         cardDeck.ShuffleDeck(60);
         for (int i = 0; i < 5; i++) { held[i] = true; }
@@ -91,6 +93,7 @@ public class Poker : MonoBehaviour
             for (int i = 1; i < playerHand.cards.Count; i++)
             {
                 if (playerHand.cards[i].Rank != ((Card.eRank)enumIndex) || playerHand.cards[i].Suit != testedSuit) return false;
+                enumIndex++;
             }
             //If didn't escape by now, its a royal flush
             return true;
@@ -101,7 +104,7 @@ public class Poker : MonoBehaviour
 
     private bool IsStraightFlush()
     {
-        //Ace, 10, Jack, Queen, King, all of same suit
+        //sequential ranks of same suit
         Card.eSuit testedSuit = playerHand.cards[0].Suit;
 
 
@@ -223,7 +226,7 @@ public class Poker : MonoBehaviour
         int tracker = 0;
         int pairCount = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             int maxTest = Math.Min(tracker + 2, playerHand.cards.Count - 1);
             for (int j = tracker; j < maxTest; j++)
@@ -231,6 +234,7 @@ public class Poker : MonoBehaviour
                 if (playerHand.cards[tracker].Rank == playerHand.cards[tracker+1].Rank)
                 {
                     pairCount++;
+                    i++;
                     break;
                 }
                 tracker++;
@@ -244,26 +248,20 @@ public class Poker : MonoBehaviour
     private bool IsOnePair()
     {
         //Two pairs of cards with same rank
-        int tracker = 0;
 
         for (int i = 0; i < 3; i++)
         {
-            int maxTest = Math.Min(tracker + 2, playerHand.cards.Count - 1);
-            for (int j = tracker; j < maxTest; j++)
+            if (playerHand.cards[i].Rank == playerHand.cards[i + 1].Rank)
             {
-                if (playerHand.cards[tracker].Rank == playerHand.cards[tracker + 1].Rank)
-                {
-                    return true;
-                }
-                tracker++;
+                return true;
             }
-
         }
         return false;
     }
 
     public void ToggleHoldCard(Button callingButton)
     {
+        if (hasDrew) return;
         string charNum = callingButton.name[callingButton.name.Length - 1].ToString();
         int.TryParse(charNum, out int cardIndex);
 
@@ -274,6 +272,7 @@ public class Poker : MonoBehaviour
 
     public void SwapCards()
     {
+        if (hasDrew) return;
         for (int i = 0; i < held.Length; i++)
         {
             if (!held[i])
@@ -282,6 +281,7 @@ public class Poker : MonoBehaviour
                 held[i] = true;
             }
         }
+        hasDrew = true;
         playerHand.Sort();
     }
 
@@ -290,7 +290,8 @@ public class Poker : MonoBehaviour
         if (!CanHold()) return;
         int payout = GetPayoutRatio();
 
-        Debug.Log("Payout: " + payout);
+        BetHandler.Instance.AddCash(payout);
+        Debug.Log("payout: " + payout);
 
         playerHand.cards.Clear();
         PokerDisplay.Instance.UpdateCards(playerHand, held);
@@ -347,7 +348,7 @@ public class Poker : MonoBehaviour
                 break;
         }
 
-        return payout;
+        return payout * BetHandler.Instance.GetBetValue();
     }
 
 
